@@ -8,4 +8,6 @@ Ship detection from synthetic aperture radar (SAR) images has gained increasing 
 ##  Dataset download
 link: https://pan.baidu.com/s/1-XmOV3p0rqsQr8Hd1S05og code: r526 
 
+## The code will be made public after the paper is accepted
+
 
