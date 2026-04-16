@@ -1,0 +1,22 @@
+class Semantic Guidance Structure(nn.Module):
+    def __init__(self, k, k_out):
+        super(DeepPoolLayer, self).__init__()
+        self.pools_sizes = [4]
+        self.conv1 = nn.Conv2d(k, k_out, 3,1, 1,bias=False)
+        pools, convs = [],[]
+        for i in self.pools_sizes:
+            pools.append(nn.AvgPool2d(kernel_size=i, stride=i))
+            convs.append(nn.Conv2d(k, k_out, 3, 1, 1, bias=False))
+        self.pools = nn.ModuleList(pools)
+        self.convs = nn.ModuleList(convs)
+        self.relu = nn.ReLU()
+        self.conv_sum = nn.Conv2d(k_out, k_out, 3, 1, 1, bias=False)
+    def forward(self, x):
+        x_size = x.size()
+        x_base =x
+        resl = self.conv1(x)
+        y1 = self.convs[0](self.pools[0](x))
+        resl = torch.add(resl, F.interpolate(y1, x_size[2:], mode='bilinear', align_corners=True))
+        resl = self.relu(resl)
+        resl = self.conv_sum(resl) + x_base
+        return resl
