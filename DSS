@@ -1,0 +1,36 @@
+class FeedForward(nn.Module):
+    def __init__(self,dim, ffn_expansion_factor=4):
+        super(FeedForward, self).__init__()
+        hidden_features = int(dim * ffn_expansion_factor)
+        self.project_in = nn.Conv2d(dim,hidden_features * 2, kernel_size=1)
+        self.dwconv = nn.Conv2d(hidden_features * 2, hidden_features * 2, kernel_size = 3, stride =1, padding=1,groups=hidden_features *2 )
+        self.project_out = nn.Conv2d(hidden_features, dim, kernel_size=1)
+    def forward(self, x):
+        x = self.project_in(x)
+        x1, x2 = self.dwconv(x).chunk(2,dim=1)
+        x = F.gelu(x1) * x2
+        x = self.project_out(x)
+        return  x
+class Direction-aware multi-scale structure(nn.Module):
+    def __init__(self,dim_in, dim_out):
+        super(attention, self).__init__()
+        self.conv0 = nn.Conv2d(dim_in, dim_out, kernel_size = 3, padding=1)
+        self.conv1_1 = nn.Conv2d(dim_out, dim_out, kernel_size=(9,1), padding=(4,0),groups=8)
+        self.conv1_2 = nn.Conv2d(dim_out, dim_out, kernel_size=(1,9), padding=(0,4),groups=8)
+        self.conv2_1 = nn.Conv2d(dim_out, dim_out, kernel_size=(5,1), padding=(2,0))
+        self.conv2_2 = nn.Conv2d(dim_out, dim_out, kernel_size=(1,5), padding=(0,2))
+        self.conv3_1 = nn.Conv2d(dim_out, dim_out, kernel_size=(7, 1), padding=(3,0))
+        self.conv3_2 = nn.Conv2d(dim_out, dim_out, kernel_size=(1, 7), padding=(0, 3))
+        self.FFN =FeedForward(dim_out)
+        self.norm = nn.BatchNorm2d(256)
+    def forward(self,x):
+        x = self.conv0(x)
+        x1_ffn = self.norm(self.FFN(self.conv1_2(self.conv1_1(x))))
+        x2_ffn = self.norm(self.FFN(self.conv2_2(self.conv2_1(x))))
+        x3_ffn = self.norm(self.FFN(self.conv3_2(self.conv3_1(x))))
+        x_ffn = self.norm(self.FFN(x))
+
+        x_ffn = x_ffn + x2_ffn + x3_ffn + x1_ffn
+      
+        out = x + x_ffn
+        return out
