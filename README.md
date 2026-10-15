@@ -1,10 +1,33 @@
+# ISSC Dataset and Model
 
-### Overlapping Pyramid Vision Transformer Enables Fine-Grained SAR Ship Detection and Classification
+**Overlapping Pyramid Vision Transformer Enables Fine-Grained SAR Ship Detection and Classification**
 
-==== 
-# # ISSC-dataset-and-model Usage Description
- ------- 
-Ship detection from synthetic aperture radar (SAR) images has gained increasing attention recently due to the irreplaceable all-weather imaging capabilities of SAR. However, it remains unclear whether SAR imaging in combination with deep learning is capable of detecting and classifying ships at the instance level, which is hampered by the lack of datasets with multi-class instance-level annotations, the lack of accompanying ship detection methods and the high speckle noise level within SAR imaging data. To tackle these issues, we build a new multi-class instance-level SAR ship dataset ISSC and an efficient multi-scale model for instance-level SAR ship detection and classification. The ISSC dataset has a number of 2764 SAR images and 8466 ship instances, with five common categories. With this high-quality dataset that can reflect the diversity of ship scales, we further propose an efficient network for instance-level SAR ship detection and classification, which uses overlapping pyramid vision Transformer as the model backbone to extract multi-scale continuous feature global information and to suppress the speckle noise in complex background. Subsequently, two neck structures of convolution units are designed to refine the directional features representing various multi-class ships and amplify the local semantic information effect of the cascading process, respectively. As such, our model is a novel global-to-local detection network for SAR images. Experiments on the ISSC dataset and HRSID dataset demonstrate the superior performance of our model, compared to state-of-the-art models. Overall, we have demonstrated the feasibility of combining SAR imaging with the deep learning approach for instance-level ship classification. 
+## Overview
+
+Synthetic aperture radar (SAR) supports maritime observation across weather and
+illumination conditions, but locating ships alone does not reveal the composition
+of a scene. Identifying individual ship types requires distinguishing subtle
+target features amid speckle noise, complex coastal backgrounds, dense ship
+arrangements, and substantial scale variation.
+
+ISSC brings ship localization and fine-grained recognition into a shared
+instance-level setting. The dataset contains 2,764 SAR images and 8,466 annotated
+ship instances across five categories, providing bounding boxes and category
+labels for the joint study of detection and classification. The accompanying
+model combines an overlapping pyramid vision Transformer with direction-aware
+multiscale refinement and semantic guidance, connecting global scene information
+with local ship features while addressing feature discontinuity and speckle
+interference. Evaluations on ISSC and HRSID examine both fine-grained ship analysis
+and ship detection. Together, the dataset and model provide a basis for moving
+from ship presence and location toward instance-level descriptions of ship types
+and their spatial distribution in SAR imagery.
+
+## 中文介绍
+
+合成孔径雷达（SAR）能够在不同天气和光照条件下开展海上观测，但仅定位舰船还不足以揭示场景中的舰船类型构成。在相干斑噪声、复杂近岸背景、密集舰船排列和显著尺度差异的共同影响下，识别单个舰船的类别需要从细微的目标特征中提取有效信息。
+
+ISSC将舰船定位与细粒度识别纳入统一的实例级研究场景。数据集包含2,764幅SAR图像和8,466个标注舰船实例，覆盖五个类别，通过边界框与类别标签支持检测和分类的联合研究。配套模型结合重叠金字塔视觉Transformer、方向感知的多尺度特征细化与语义引导，将全局场景信息与局部舰船特征连接起来，同时应对特征不连续和相干斑干扰。ISSC与HRSID上的评估分别考察细粒度舰船分析和舰船检测能力。数据集与模型共同为SAR图像分析从判断舰船是否存在、位于何处，进一步走向单个舰船类型及其空间分布的实例级描述提供基础。
+
 ## Citation
 
 If you use the ISSC dataset in your research, please cite the following paper:
