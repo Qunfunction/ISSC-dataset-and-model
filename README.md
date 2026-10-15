@@ -1,5 +1,5 @@
 
-### Overlapping pyramid vision Transformer enables instance-level SAR ship detection and classification
+### Overlapping Pyramid Vision Transformer Enables Fine-Grained SAR Ship Detection and Classification
 
 ==== 
 # # ISSC-dataset-and-model Usage Description
@@ -11,10 +11,20 @@ If you use the ISSC dataset in your research, please cite the following paper:
 
 Zequn Sun, Jiajie Ma, Chunning Meng, Lijun Zhao, Lianzhi Huo, Tao Li, Zhiqing Zhang, and Shengjiang Chang.
 **Overlapping Pyramid Vision Transformer Enables Fine-Grained SAR Ship Detection and Classification.**
+*IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing*, vol. 19, pp. 18999-19016, 2026.
+DOI: [10.1109/JSTARS.2026.3695474](https://doi.org/10.1109/JSTARS.2026.3695474).
+
+```bibtex
+@article{sun2026overlapping,
+  author = {Sun, Zequn and Ma, Jiajie and Meng, Chunning and Zhao, Lijun and Huo, Lianzhi and Li, Tao and Zhang, Zhiqing and Chang, Shengjiang},
+  title = {Overlapping Pyramid Vision Transformer Enables Fine-Grained {SAR} Ship Detection and Classification},
+  journal = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  year = {2026},
+  volume = {19},
+  pages = {18999--19016},
+  doi = {10.1109/JSTARS.2026.3695474}
+}
+```
 
 ##  Dataset download
-link: https://pan.baidu.com/s/1-XmOV3p0rqsQr8Hd1S05og code: r526 
-
-## The code will be made public after the paper is accepted
-
-
+link: https://pan.baidu.com/s/1-XmOV3p0rqsQr8Hd1S05og code: r526
